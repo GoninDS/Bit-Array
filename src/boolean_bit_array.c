@@ -37,18 +37,32 @@ enum error_t bit_array_set_true(struct bit_array * array, uint64_t index) {
   // Divides index by 8
   // This specifies which position of the array is desired
   uint64_t array_index = index >> 3;
-
   // index % 8 specifies which position inside the byte is desired
   // index & 7 is the same as index % 8
-  
-  index = index & 7;
+  uint64_t bit_index = index & 7;
   // Sets the value to true with an or
-  array->values[array_index] = array->values[array_index] | masks[index];
+  array->values[array_index] = array->values[array_index] | masks[bit_index];
 
   return ERROR_SUCCESS;
 }
 
 enum error_t bit_array_set_false(struct bit_array * array, uint64_t index) {
+  assert(array);
+  // See set true for mask explanation
+  uint8_t masks[] = {128, 64, 32, 16, 8, 4, 2, 1};
+  // Divides index by 8
+  // This specifies which position of the array is desired
+  uint64_t array_index = index >> 3;
+  // index % 8 specifies which position inside the byte is desired
+  // index & 7 is the same as index % 8
+  uint64_t bit_index = index & 7;
+
+  // If the value is set to true
+  if ((masks[bit_index] & array->values[array_index]) > 0) {
+    // Substract the desired value to set value to false
+    array->values[array_index] = array->values[array_index] - masks[bit_index];
+  }
+
   return ERROR_SUCCESS;
 }
 
