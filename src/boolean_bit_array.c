@@ -1,7 +1,7 @@
 #include "boolean_bit_array.h"
 
 void bit_array_init(struct bit_array * array, uint64_t byte_amount) {
-
+  
 }
 
 void bit_array_free(struct bit_array * array) {
