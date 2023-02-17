@@ -20,6 +20,31 @@ enum error_t bit_array_free(struct bit_array * array) {
 }
 
 enum error_t bit_array_set_true(struct bit_array * array, uint64_t index) {
+  assert(array);
+  /*
+    Contains the masks for each index in the array
+    128 = 1000 0000
+    64 = 0100 0000
+    32 = 0010 0000
+    16 = 0001 0000
+    8 = 0000 1000
+    4 = 0000 0100
+    2 = 0000 0010
+    1 = 0000 0001
+  */
+  uint8_t masks[] = {128, 64, 32, 16, 8, 4, 2, 1};
+
+  // Divides index by 8
+  // This specifies which position of the array is desired
+  uint64_t array_index = index >> 3;
+
+  // index % 8 specifies which position inside the byte is desired
+  // index & 7 is the same as index % 8
+  
+  index = index & 7;
+  // Sets the value to true with an or
+  array->values[array_index] = array->values[array_index] | masks[index];
+
   return ERROR_SUCCESS;
 }
 
