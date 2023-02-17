@@ -4,3 +4,4 @@ thumbs.db
 bin
 build
 doc
+*.o
