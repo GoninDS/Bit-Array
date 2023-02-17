@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "error_enum.h"
+
 struct bit_array {
   /// @brief Contains the array that holds each byte of information
   uint8_t * array;
@@ -15,31 +17,35 @@ struct bit_array {
  * 
  * @param array Pointer to the struct holding the array
  * @param byte_amount Amount of bytes to allocate for the array
+ * @return Error code
  */
-void bit_array_init(struct bit_array * array, uint64_t byte_amount);
+enum error_t bit_array_init(struct bit_array * array, uint64_t byte_amount);
 
 /**
  * @brief Free the memory allocated by the bit array
  * 
  * @param array Pointer to the struct holding the array
+ * @return Error code
  */
-void bit_array_free(struct bit_array * array);
+enum error_t bit_array_free(struct bit_array * array);
 
 /**
  * @brief Set true the bit corresponding to the desired index
  * 
  * @param array Pointer to the struct holding the array
  * @param index Desired position to set true
+ * @return Error code
  */
-void bit_array_set_true(struct bit_array * array, uint64_t index);
+enum error_t bit_array_set_true(struct bit_array * array, uint64_t index);
 
 /**
  * @brief Set false the bit corresponding to the desired index
  * 
  * @param array Pointer to the struct holding the array
  * @param index Desired position to set false
+ * @return Error code
  */
-void bit_array_set_false(struct bit_array * array, uint64_t index);
+enum error_t bit_array_set_false(struct bit_array * array, uint64_t index);
 
 /**
  * @brief Returns the corresponding value in the desired position

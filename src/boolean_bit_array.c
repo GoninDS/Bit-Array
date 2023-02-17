@@ -1,19 +1,19 @@
 #include "boolean_bit_array.h"
 
-void bit_array_init(struct bit_array * array, uint64_t byte_amount) {
-  
+enum error_t bit_array_init(struct bit_array * array, uint64_t byte_amount) {
+  return ERROR_SUCCESS;
 }
 
-void bit_array_free(struct bit_array * array) {
-
+enum error_t bit_array_free(struct bit_array * array) {
+  return ERROR_SUCCESS;
 }
 
-void bit_array_set_true(struct bit_array * array, uint64_t index) {
-
+enum error_t bit_array_set_true(struct bit_array * array, uint64_t index) {
+  return ERROR_SUCCESS;
 }
 
-void bit_array_set_false(struct bit_array * array, uint64_t index) {
-
+enum error_t bit_array_set_false(struct bit_array * array, uint64_t index) {
+  return ERROR_SUCCESS;
 }
 
 bool bit_array_get_value(struct bit_array * array, uint64_t index) {
