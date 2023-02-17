@@ -13,6 +13,9 @@ enum error_t bit_array_init(struct bit_array * array, uint64_t byte_amount) {
 }
 
 enum error_t bit_array_free(struct bit_array * array) {
+  assert(array);
+  // Free the memory allocated for the array values
+  free(array->values);
   return ERROR_SUCCESS;
 }
 
