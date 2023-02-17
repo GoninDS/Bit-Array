@@ -1,7 +1,15 @@
 #include "boolean_bit_array.h"
 
 enum error_t bit_array_init(struct bit_array * array, uint64_t byte_amount) {
-  return ERROR_SUCCESS;
+  // Assume error success
+  enum error_t error = ERROR_SUCCESS;
+  array->values = (uint8_t*) calloc(byte_amount, sizeof(uint8_t));
+  // No memory was allocated
+  if (array->values == NULL) {
+    array->values = 0;
+    error = MEMORY_ERROR;
+  }
+  return error;
 }
 
 enum error_t bit_array_free(struct bit_array * array) {

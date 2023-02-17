@@ -9,7 +9,7 @@
 
 struct bit_array {
   /// @brief Contains the array that holds each byte of information
-  uint8_t * array;
+  uint8_t * values;
 };
 
 /**
